@@ -1,0 +1,67 @@
+<mat-card>
+    <mat-card-header>
+        <img src="https://www.cotiinformatica.com.br/imagens/logo-coti-informatica.png"/>
+    </mat-card-header>
+    <mat-card-title>
+        Sistema de controle de estoque
+    </mat-card-title>
+    <mat-card-subtitle>
+        Acessar conta de usuário
+    </mat-card-subtitle>
+    <mat-card-content>
+        <form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
+            <p>
+                <mat-form-field>
+                    <input 
+                        matInput
+                        type="text"
+                        placeholder="Email de acesso:"
+                        formControlName="email"
+                    />
+                    <mat-error *ngIf="form.email.touched && form.email.invalid">
+                        <div *ngIf="form.email.errors.required">
+                            Por favor, informe seu email de acesso.
+                        </div>
+                        <div *ngIf="form.email.errors.email">
+                            Por favor, informe um email válido.
+                        </div>
+                    </mat-error>
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field>
+                    <input 
+                        matInput 
+                        type="password" 
+                        placeholder="Senha de acesso:" 
+                        formControlName="senha" 
+                    />
+                    <mat-error *ngIf="form.senha.touched && form.senha.invalid">
+                        <div *ngIf="form.senha.errors.required">
+                            Por favor, informe sua senha de acesso.
+                        </div>
+                        <div *ngIf="form.senha.errors.minlength">
+                            Por favor, informe no mínimo 8 caracteres.
+                        </div>
+                    </mat-error>
+                </mat-form-field>
+            </p>
+            <p class="password-link">
+                <a href="#">Esqueci minha senha</a>
+            </p>
+            <p>
+                <button type="submit" mat-raised-button color="primary" [disabled]="!formLogin.valid">
+                    Acessar Sistema
+                </button>
+            </p>
+            <p class="register-link">
+                <a href="#" mat-raised-button color="accent">
+                    Não possui conta? <strong>Cadastre-se aqui!</strong>
+                </a>
+            </p>
+            <p class="message">
+                <span></span>
+            </p>
+        </form>
+    </mat-card-content>
+</mat-card>
