@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginRequest } from 'src/app/models/login.request.model';
+import { postLogin } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -17,8 +19,8 @@ export class LoginComponent {
 
   // Estrutura do formulário
   formLogin = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    senha: new FormControl('', [Validators.required, Validators.minLength(8)])
+    username: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required, Validators.minLength(8)])
   });
 
   // Objeto para acessar os campos do formulário
@@ -28,7 +30,24 @@ export class LoginComponent {
 
   // Função para processar o SUBMIT do formulário
   onSubmit() {
-    this.router.navigate(['/admin/dashboard']);
+
+    // Dados da requisição
+    const request = new LoginRequest(
+      this.formLogin.value.username as string,
+      this.formLogin.value.password as string
+    );
+
+    // Chamada para a API
+    postLogin(request)
+    .subscribe({
+      next: (data) => {
+        console.log(data);
+      },
+      error: (e) => {
+        console.log(e.error);
+      }
+    });
+
   }
 
 }

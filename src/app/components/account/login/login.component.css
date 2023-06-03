@@ -1,55 +1,93 @@
-:host {
-    display: flex;
-    justify-content: center;
-    margin: 100px 0px;
+mat-card {
+    max-width: 400px;
+    margin: 0 auto;
+    margin-top: 100px;
+    padding: 10px;
+    text-align: center;
 }
 
-mat-card {
-    width: 400px;
+
+mat-card-header {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    margin-bottom: 20px;
 }
+
+
+mat-card-header img {
+    max-width: 400px;
+}
+
 
 mat-card-title {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px !important;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
+
 mat-card-subtitle {
-    display: flex;
-    justify-content: center;
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
 }
+
+
+.password-link {
+    text-align: right;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+
+.password-link a {
+    color: #666;
+    text-decoration: none;
+}
+
+
+.register-link {
+    margin-top: 20px;
+}
+
+
+.register-link a {
+    text-decoration: none;
+}
+
+
+button[type="submit"] {
+    width: 100%;
+}
+
+
+button[type="submit"]:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
 
 mat-form-field {
     width: 100%;
-    min-width: 360px;
 }
 
-mat-raised-button {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    min-width: 360px;
+
+.mat-form-field-underline {
+    bottom: -8px !important;
 }
 
-input[type="text"],
-input[type="password"] {
-    width: 100%;
-    box-sizing: border-box;
+
+.mat-form-field-label {
+    transform: translateY(-12px);
 }
 
-p.password-link,
-p.register-link {
-    width: 100%;
-    text-align: center;
-    margin-top: 10px;
+
+.mat-error {
+    font-size: 12px;
+    margin-top: 2px;
 }
 
-button[type="submit"],
-a.register-link {
-    width: 100%;
+
+.mat-error+.mat-form-field-underline {
+    bottom: 0 !important;
 }

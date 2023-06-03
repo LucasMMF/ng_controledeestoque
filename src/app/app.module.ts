@@ -9,6 +9,7 @@ import { EstoqueCadastroComponent } from './components/admin/estoque-cadastro/es
 import { EstoqueConsultaComponent } from './components/admin/estoque-consulta/estoque-consulta.component';
 import { RoutingModule } from './app.routing';
 import { MaterialModule } from './material.module';
+import { NavbarComponent } from './components/shared/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { MaterialModule } from './material.module';
     LoginComponent,
     DashboardComponent,
     EstoqueCadastroComponent,
-    EstoqueConsultaComponent
+    EstoqueConsultaComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
