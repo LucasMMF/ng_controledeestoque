@@ -5,6 +5,7 @@ import { LoginComponent } from "./components/account/login/login.component";
 import { DashboardComponent } from "./components/admin/dashboard/dashboard.component";
 import { EstoqueCadastroComponent } from "./components/admin/estoque-cadastro/estoque-cadastro.component";
 import { EstoqueConsultaComponent } from "./components/admin/estoque-consulta/estoque-consulta.component";
+import { EstoqueEdicaoComponent } from "./components/admin/estoque-edicao/estoque-edicao.component";
 
 const routes: Routes = [
     {
@@ -22,6 +23,10 @@ const routes: Routes = [
     {
         path: 'admin/estoque-consulta',
         component: EstoqueConsultaComponent
+    },
+    {
+        path: 'admin/estoque-edicao/:id',
+        component: EstoqueEdicaoComponent
     },
     {
         path: '',

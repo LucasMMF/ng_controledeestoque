@@ -3,20 +3,24 @@
     flex-direction: column;
 }
 
+
 .form-row {
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 2px;
 }
 
+
 .full-width {
     flex: 1;
     margin-right: 10px;
 }
 
+
 .button-spacer {
     margin-left: 10px;
 }
+
 
 mat-card {
     margin-top: 100px;
@@ -24,6 +28,7 @@ mat-card {
     margin-right: 40px;
     padding: 0 20px 20px 20px;
 }
+
 
 mat-card-header {
     margin-bottom: 20px;

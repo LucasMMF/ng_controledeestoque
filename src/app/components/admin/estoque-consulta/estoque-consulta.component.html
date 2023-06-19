@@ -1,1 +1,53 @@
-<p>estoque-consulta works!</p>
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Consulta de Estoques</mat-card-title>
+        <mat-card-subtitle>Listagem de estoques cadastrados</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <!-- Tabela de dados -->
+       <mat-table [dataSource]="dataSource" class="table-estoque">
+            <!-- Coluna 'nome' -->
+            <ng-container matColumnDef="nome">
+                <mat-header-cell *matHeaderCellDef>Nome do estoques</mat-header-cell>
+                <mat-cell *matCellDef="let estoque">{{estoque.nome}}</mat-cell>
+            </ng-container>
+
+            <!-- Coluna 'descrição' -->
+            <ng-container matColumnDef="descricao">
+                <mat-header-cell *matHeaderCellDef>Descrição do estoques</mat-header-cell>
+                <mat-cell *matCellDef="let estoque">{{estoque.descricao}}</mat-cell>
+            </ng-container>
+
+            <!-- Coluna 'data de criação' -->
+            <ng-container matColumnDef="datacriacao">
+                <mat-header-cell *matHeaderCellDef>Criado em</mat-header-cell>
+                <mat-cell *matCellDef="let estoque">{{estoque.datacriacao | date: 'dd/MM/yyyy HH:mm'}}</mat-cell>
+            </ng-container>
+
+            <!-- Coluna 'usuário' -->
+            <ng-container matColumnDef="usuario">
+                <mat-header-cell *matHeaderCellDef>Criado por</mat-header-cell>
+                <mat-cell *matCellDef="let estoque">{{estoque.usuario}}</mat-cell>
+            </ng-container>
+
+            <!-- Coluna de operações (botões) -->
+            <ng-container matColumnDef="operacoes">
+                <mat-header-cell *matHeaderCellDef>Operações</mat-header-cell>
+                <mat-cell *matCellDef="let estoque">
+                    <button mat-icon-button color="primary" (click)="onEdit(estoque)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    &nbsp;
+                    <button mat-icon-button color="warn" (click)="onDelete(estoque)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </mat-cell>
+            </ng-container>
+
+            <!-- Definição dos nomes das colunas do grid -->
+            <mat-header-row *matHeaderRowDef="columnNames"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: columnNames"></mat-row>
+
+       </mat-table>
+    </mat-card-content>
+</mat-card>
