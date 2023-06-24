@@ -1,5 +1,5 @@
-import { LoginRequest } from "../models/login.request.model";
-import { LoginResponse } from "../models/login.response.model";
+import { AutenticarRequestModel } from "../models/autenticar.request.model";
+import { AutenticarResponseModel } from "../models/autenticar.response.model";
 import { Observable } from 'rxjs';
 import axios from 'axios';
 import { environment } from "src/environments/environment";
@@ -8,11 +8,13 @@ import { environment } from "src/environments/environment";
     Função para executar a chamada para o serviço
     de autenticação de usuários na API
 */
-export function postLogin(request: LoginRequest): Observable<LoginResponse> {
+export function autenticar(request: AutenticarRequestModel): Observable<AutenticarResponseModel> {
 
     // Fazendo a chamada para a API com o AXIOS HTTP
-    return new Observable<LoginResponse>(observer => {
-        axios.post<LoginResponse>(environment.apiEstoque + "/login", request)
+    return new Observable<AutenticarResponseModel>(observer => {
+        axios.post<AutenticarResponseModel>(
+            environment.apiEstoque + "/api/usuarios/autenticar",
+            request)
             .then(response => {
                 observer.next(response.data);
                 observer.complete();

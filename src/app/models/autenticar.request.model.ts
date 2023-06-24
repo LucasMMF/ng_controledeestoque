@@ -2,10 +2,10 @@
     Modelo de dados para autenticação
     dos usuários
 */
-export class LoginRequest {
+export class AutenticarRequestModel {
     constructor(
-        public username: string,
-        public password: string
+        public email: string,
+        public senha: string
     ) {
         
     }

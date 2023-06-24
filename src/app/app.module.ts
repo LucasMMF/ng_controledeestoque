@@ -12,6 +12,7 @@ import { RoutingModule } from './app.routing';
 import { MaterialModule } from './material.module';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { EstoqueEdicaoComponent } from './components/admin/estoque-edicao/estoque-edicao.component';
+import { MessagesComponent } from './components/shared/messages/messages.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { EstoqueEdicaoComponent } from './components/admin/estoque-edicao/estoqu
     EstoqueCadastroComponent,
     EstoqueConsultaComponent,
     NavbarComponent,
-    EstoqueEdicaoComponent
+    EstoqueEdicaoComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,

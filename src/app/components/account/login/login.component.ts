@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginRequest } from 'src/app/models/login.request.model';
-import { postLogin } from 'src/app/services/login.service';
+import { saveData } from 'src/app/helpers/storage.helper';
+import { AutenticarRequestModel } from 'src/app/models/autenticar.request.model';
+import { autenticar } from 'src/app/services/autenticar.service';
 
 @Component({
   selector: 'app-login',
@@ -10,6 +11,9 @@ import { postLogin } from 'src/app/services/login.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+
+  // Atributo
+  mensagem: string = '';
 
   // Construtor
   constructor(
@@ -32,19 +36,30 @@ export class LoginComponent {
   onSubmit() {
 
     // Dados da requisição
-    const request = new LoginRequest(
+    const request = new AutenticarRequestModel(
       this.formLogin.value.username as string,
       this.formLogin.value.password as string
     );
 
     // Chamada para a API
-    postLogin(request)
+    autenticar(request)
     .subscribe({
       next: (data) => {
-        console.log(data);
+        // Salvar os dados na local storage
+        saveData('auth', data);
+
+        // Redirecionar para a página de dashboard
+        this.router.navigate(['/admin/dashboard']);
       },
       error: (e) => {
-        console.log(e.error);
+        switch(e.response.status) {
+          case 400:
+            this.mensagem = "Ocorreram erros de validação no preenchimento do formulário";
+            break;
+          case 401:
+            this.mensagem = e.response.data.mensagem;
+            break;
+        }
       }
     });
 

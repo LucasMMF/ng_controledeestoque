@@ -9,6 +9,10 @@
         Informe suas credenciais de acesso:
     </mat-card-subtitle>
     <mat-card-content>
+
+        <!-- exibir o componente de mensagens -->
+        <app-messages [texto]="mensagem"></app-messages>
+
         <form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
             <p>
                 <mat-form-field>
