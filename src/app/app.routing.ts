@@ -6,6 +6,7 @@ import { DashboardComponent } from "./components/admin/dashboard/dashboard.compo
 import { EstoqueCadastroComponent } from "./components/admin/estoque-cadastro/estoque-cadastro.component";
 import { EstoqueConsultaComponent } from "./components/admin/estoque-consulta/estoque-consulta.component";
 import { EstoqueEdicaoComponent } from "./components/admin/estoque-edicao/estoque-edicao.component";
+import { SignInGuard } from "./guards/signin.guard";
 
 const routes: Routes = [
     {
@@ -14,19 +15,23 @@ const routes: Routes = [
     },
     {
         path: 'admin/dashboard',
-        component: DashboardComponent
+        component: DashboardComponent,
+        canActivate: [SignInGuard]
     },
     {
         path: 'admin/estoque-cadastro',
-        component: EstoqueCadastroComponent
+        component: EstoqueCadastroComponent,
+        canActivate: [SignInGuard]
     },
     {
         path: 'admin/estoque-consulta',
-        component: EstoqueConsultaComponent
+        component: EstoqueConsultaComponent,
+        canActivate: [SignInGuard]
     },
     {
         path: 'admin/estoque-edicao/:id',
-        component: EstoqueEdicaoComponent
+        component: EstoqueEdicaoComponent,
+        canActivate: [SignInGuard]
     },
     {
         path: '',

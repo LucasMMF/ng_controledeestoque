@@ -5,10 +5,13 @@
             Controle de estoques
         </a>
     </div>
-    <span class="nav-tool-items">
+    <span class="nav-tool-items" *ngIf="model == null">
         <a mat-button routerLink="account/login">Acessar Conta</a>
+    </span>
+    <span class="nav-tool-items" *ngIf="model != null">
         <a mat-button routerLink="admin/dashboard">Dashboard</a>
         <a mat-button routerLink="admin/estoque-cadastro">Criar Estoque</a>
         <a mat-button routerLink="admin/estoque-consulta">Ver Estoques</a>
+        <button mat-button href="#" (click)="logout()">Sair do Sistema</button>
     </span>
 </mat-toolbar>

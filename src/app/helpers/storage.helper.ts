@@ -9,6 +9,13 @@ export function saveData(key: string, data: any): void {
 }
 
 /*
+    Função para apagar dados da local storage
+ */
+export function removeData(key: string): void {
+    localStorage.removeItem(key);
+}
+
+/*
     Função para ler dados gravados na local storage
 */
 export function getData(key: string): any | null {

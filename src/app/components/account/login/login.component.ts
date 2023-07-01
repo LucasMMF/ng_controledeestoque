@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { saveData } from 'src/app/helpers/storage.helper';
+import { signIn } from 'src/app/helpers/auth.helper';
 import { AutenticarRequestModel } from 'src/app/models/autenticar.request.model';
 import { autenticar } from 'src/app/services/autenticar.service';
 
@@ -46,10 +46,13 @@ export class LoginComponent {
     .subscribe({
       next: (data) => {
         // Salvar os dados na local storage
-        saveData('auth', data);
+        signIn(data);
 
         // Redirecionar para a página de dashboard
-        this.router.navigate(['/admin/dashboard']);
+        this.router.navigate(['/admin/dashboard'])
+        .then(() => {
+          window.location.reload();
+        });
       },
       error: (e) => {
         switch(e.response.status) {
