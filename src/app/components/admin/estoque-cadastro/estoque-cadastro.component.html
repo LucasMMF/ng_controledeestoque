@@ -4,25 +4,49 @@
         <mat-card-subtitle>Preencha as informações abaixo para cadastrar um estoque</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-        <form class="stock-form">
+
+        <!-- Componente para exibição de mensagem -->
+        <app-messages [texto]="mensagem"></app-messages>
+
+        <form [formGroup]="formCadastro" (ngSubmit)="onSubmit()" class="stock-form">
             <div class="form-row">
                 <mat-form-field class="full-width">
                     <mat-label>Nome do estoque:</mat-label>
-                    <input matInput placeholder="Digite o nome aqui" required>
+                    <input matInput placeholder="Digite o nome aqui" formControlName="nome"/>
+                    <mat-error *ngIf="form.nome.touched && form.nome.invalid">
+                        <span *ngIf="form.nome.errors.required">
+                            Por favor, informe o nome do estoque.
+                        </span>
+                        <span *ngIf="form.nome.errors.minlength">
+                            Por favor, informe no mínimo 8 caracteres.
+                        </span>
+                    </mat-error>
                 </mat-form-field>
             </div>
             <div class="form-row">
                 <mat-form-field class="full-width">
                     <mat-label>Descrição do estoque:</mat-label>
-                    <textarea matInput placeholder="Digite a descrição aqui"></textarea>
+                    <textarea matInput placeholder="Digite a descrição aqui" formControlName="descricao"></textarea>
+                    <mat-error *ngIf="form.descricao.touched && form.descricao.invalid">
+                        <span *ngIf="form.descricao.errors.required">
+                            Por favor, informe a descrição do estoque.
+                        </span>
+                        <span *ngIf="form.descricao.errors.minlength">
+                            Por favor, informe no mínimo 8 caracteres.
+                        </span>
+                    </mat-error>
                 </mat-form-field>
             </div>
             <div class="form-row">
-                <button mat-raised-button color="primary">Cadastrar Estoque</button>
+                <button type="submit" mat-raised-button color="primary"
+                    [disabled]="!formCadastro.valid">
+                    Cadastrar Estoque
+                </button>
                 <span class="button-spacer"></span>
                 <button mat-raised-button color="accent" routerLink="/admin/estoque-consulta">Ir para a
                     consulta</button>
             </div>
         </form>
+
     </mat-card-content>
 </mat-card>

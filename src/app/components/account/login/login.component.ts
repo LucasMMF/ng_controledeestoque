@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { signIn } from 'src/app/helpers/auth.helper';
 import { AutenticarRequestModel } from 'src/app/models/autenticar.request.model';
 import { autenticar } from 'src/app/services/autenticar.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,8 @@ export class LoginComponent {
 
   // Construtor
   constructor(
-    private router: Router // Manipulação das rotas
+    private router: Router, // Manipulação das rotas
+    private spinner: NgxSpinnerService // ngx-spinner
   ) {
   }
 
@@ -34,6 +36,8 @@ export class LoginComponent {
 
   // Função para processar o SUBMIT do formulário
   onSubmit() {
+
+    this.spinner.show();
 
     // Dados da requisição
     const request = new AutenticarRequestModel(
@@ -64,6 +68,9 @@ export class LoginComponent {
             break;
         }
       }
+    })
+    .add(() => {
+      this.spinner.hide();
     });
 
   }

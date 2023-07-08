@@ -5,6 +5,7 @@ import { EstoqueGetResponseModel } from "../models/estoques-get.response.model";
 import axios, { AxiosResponse } from "axios";
 import { environment } from "src/environments/environment";
 import { getAuthData } from "../helpers/auth.helper";
+import { downloadFile } from "../helpers/download.helper";
 
 const urlEstoques = `${environment.apiEstoque}/api/estoques`;
 
@@ -58,6 +59,32 @@ export function getEstoqueById(id: string): Observable<EstoqueGetResponseModel> 
     }
 
     return makeRequest<EstoqueGetResponseModel>(config);
+}
+
+// Consulta do relatório de estoque em PDF
+export function getPdfEstoque() {
+    return new Observable((observer) => {
+        axios.get(`${urlEstoques}/relatorio-pdf`, { responseType: 'arraybuffer' })
+            .then(response => {
+                downloadFile(response.data, 'pdf', 'relatorio-estoques');
+                observer.next();
+                observer.complete();
+            })
+            .catch(error => { observer.error(error) })
+    });
+}
+
+// Consulta do relatório de estoque em Excel
+export function getExcelEstoque() {
+    return new Observable((observer) => {
+        axios.get(`${urlEstoques}/relatorio-excel`, { responseType: 'arraybuffer' })
+            .then(response => {
+                downloadFile(response.data, 'excel', 'relatorio-estoques');
+                observer.next();
+                observer.complete();
+            })
+            .catch(error => { observer.error(error) })
+    });
 }
 
 // Interceptor para enviar o token nas requisições
